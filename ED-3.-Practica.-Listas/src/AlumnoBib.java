@@ -1,3 +1,4 @@
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class AlumnoBib {
@@ -36,13 +37,13 @@ public class AlumnoBib {
 
     public void nuevaEvaluacion(Evaluacion evaluacion) {
 
-        expediente.insertar(evaluacion);
+        expediente.add(evaluacion);
     }
 
     public boolean estaAprobado(String nombreAsig) {
 
         boolean aprobado = false;
-        IteradorListaOrdinal it = expediente.getIterador();
+        Iterator<Evaluacion> it = expediente.iterator();
         while (it.hasNext() && !aprobado) {
             Evaluacion evaluacion = it.next();
             if (evaluacion.getNombreAsignatura().equals(nombreAsig) && evaluacion.getNota() >= 5.0) {
@@ -56,14 +57,15 @@ public class AlumnoBib {
 
         LinkedList<Evaluacion> asignaturasAprobadas = new LinkedList<Evaluacion>();
 
-        IteradorListaOrdinal asignaturas = expediente.getIterador();
+        Iterator<Evaluacion> asignaturas = expediente.iterator();
 
         while (asignaturas.hasNext()) {
+
 
             Evaluacion auxEvaluacion = asignaturas.next();
 
             if (auxEvaluacion.getNota() >= 5) {
-                asignaturasAprobadas.insertar(auxEvaluacion);
+                asignaturasAprobadas.add(auxEvaluacion);
             }
 
         }
@@ -78,9 +80,9 @@ public class AlumnoBib {
 
         LinkedList<Evaluacion> aprobadas = asignaturasAprobadas();
 
-        IteradorListaOrdinal aprobadasIt = aprobadas.getIterador();
+        Iterator<Evaluacion> aprobadasIt = aprobadas.iterator();
 
-        int numAprobadas = aprobadas.getNumElementos();
+        int numAprobadas = aprobadas.size();
 
         while (aprobadasIt.hasNext()) {
 
@@ -98,7 +100,7 @@ public class AlumnoBib {
 
         LinkedList<Evaluacion> aprobadas = asignaturasAprobadas();
 
-        int numAprobadas = aprobadas.getNumElementos();
+        int numAprobadas = aprobadas.size();
 
         return numAprobadas;
     }
@@ -107,9 +109,9 @@ public class AlumnoBib {
 
         System.out.println(getNombre() + ". Matricula: " + getMatricula());
 
-        IteradorListaOrdinal expedienteAlumnoIt = expediente.getIterador();
+        Iterator<Evaluacion> expedienteAlumnoIt = expediente.iterator();
 
-        if (!expediente.vacia()) {
+        if (!expediente.isEmpty()) {
 
             while (expedienteAlumnoIt.hasNext()) {
 
@@ -117,7 +119,7 @@ public class AlumnoBib {
 
             }
 
-            System.out.println(expediente.getNumElementos() + " evaluaciones y " + getNumAprobadas() + " asignaturas aprobadas con calificación media " + mediaAprobadas());
+            System.out.println(expediente.size() + " evaluaciones y " + getNumAprobadas() + " asignaturas aprobadas con calificación media " + mediaAprobadas());
 
         } else {
 

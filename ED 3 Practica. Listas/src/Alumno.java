@@ -4,13 +4,13 @@ public class Alumno {
 
     private int matricula;
 
-    private ListaOrdinal expediente;
+    private LinkedList<Evaluacion> expediente;
 
     public Alumno(String nombre, int matricula) {
 
         this.nombre = nombre;
         this.matricula = matricula;
-        expediente = new ListaOrdinal();
+        expediente = new LinkedList<Evaluacion>();
     }
 
     public int getMatricula() {
@@ -52,9 +52,9 @@ public class Alumno {
         return aprobado;
     }
 
-    public ListaOrdinal asignaturasAprobadas() {
+    public LinkedList<Evaluacion> asignaturasAprobadas() {
 
-        ListaOrdinal asignaturasAprobadas;
+        LinkedList<Evaluacion> asignaturasAprobadas = new LinkedList<Evaluacion>();
 
         IteradorListaOrdinal aprobadas = expediente.getIterador();
 
